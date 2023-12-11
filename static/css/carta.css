@@ -1,0 +1,51 @@
+
+.carta{
+    position: relative;
+    min-width: 900px;
+    min-height: 300px;
+    padding: 9px;
+    background-color: #170229;
+    margin: 100px auto 0px 0px;
+    box-shadow: 0px 0px 30px rgb(12, 12, 100);
+}
+.total{
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #170229;
+    color: #fff; 
+    box-sizing: border-box;
+
+}
+
+.boton-menu{
+    width: 70px; 
+    height: 35px; 
+    font-size: smaller;
+}
+
+.total p{
+    font-size:1.5rem;
+    margin-left: 520px
+}
+
+.tabla tbody td{
+    background-color: rgba(90, 22, 153, 0.473);
+    box-shadow: 0px 5px 1px white;
+}
+
+.mas{
+    padding: 0px!important;
+    background-color: revert; 
+    box-shadow:none;
+    text-align: left;
+    
+   
+}
+
+.mas button{
+    margin-bottom: 60px;
+    margin-left: 20px;
+}

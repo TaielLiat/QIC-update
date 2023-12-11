@@ -1,0 +1,117 @@
+{% extends 'layout.html' %} {%block body%} {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show mt-4" role="alert" data-dismiss="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+</button>
+</div>
+{% endfor %} {% endif %} {% endwith %}
+<h2 class="mt-5 text-white"><strong>| Mesas</strong> </h2>
+<div class="container mx-auto mt-4 d-grid">
+    <div class="row">
+        <div style="display:flex">
+            {% if current_user.is_authenticated %}  <!-- BOTONES ADMINISTRADOR -->
+                {% if current_user.is_admin == "Admin" %}
+                    <button type="button" onclick="openCreationForm(), getMesas()" class="btn btn-primary mt-4 me-4"> Crear mesa</button>
+                    <button class="btn btn-warning mt-4 me-4" onclick="openModifyForm()"> Modificar mesa</button>
+                    <button class="btn btn-danger mt-4 me-4" onclick="openDeleteForm()"> Borrar mesa</button>
+                {% endif %}
+            {% endif %}
+        </div>
+        {% for mesa in mesas %}
+        <div class="col-md-auto mt-4 carta">
+            <div class="card" style="width: 18rem; height: 14rem;">
+                <div class="card-body cartauwu">
+                    <h2 class="card-title" id="mesa"> Mesa: {{ mesa.0 }}  </h4>
+                    <h6 class="card-subtitle mb-2 estado" style="text-transform: uppercase;"> estado: {{ mesa.1}}</h6>
+                    
+                    <div style="text-align: center; margin-top: 5.3rem">
+                        <a href="/nuevo_servicio/{{mesa.0}}" class="btn btn-secondary me-4 iniciar_servicio" style="font-size: 1.2rem;"><i class="fab fa-github "></i> Iniciar Servicio</a>
+                        <a href="/ver_mesa/{{mesa.0}}" class="btn btn-primary ver " id="ver" style="font-size: 1.2rem; margin-right: 5px"><i class="fas fa-link"></i> Ver</a>
+                        <a href="/terminar_servicio/{{mesa.0}}" class="btn btn-danger me-4 terminar" style="font-size: 1.2rem;"><i class="fab fa-github "></i> Terminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="form-popup" id="crear_mesa">
+        <form action="/agregar_mesa" method="POST" class='form-container'>
+            <div class="form-group">
+                <legend>Mesa</legend>
+                <input class="input-group-text" type="number" id="creacion_mesa" name='id_mesa' style="pointer-events: none" />
+
+            </div>
+            <div class="form-group">
+                <legend class="mt-2">Estado</legend>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estado" value="disponible" checked="">
+                    <label class="form-check-label" for="optionsRadios1">
+                    Disponible
+                  </label>
+                </div>
+                <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="estado" id="optionsRadios3" value="no disponible">
+                    <label class="form-check-label" for="optionsRadios3">
+                    No disponible
+                  </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary enviar"> Enviar </button>
+            <button type="button" class="btn cancel" onclick="closeCreationForm()">Cancelar</button>
+        </form>
+    </div>
+
+    <div class="form-popup" style="margin-left: 9rem" id="editar_mesa">
+        <form action="/cambiar_estado_mesa" method="POST" class='form-container'>
+            <div class="form-group">
+                <legend> Mesa</legend>
+                <select class="form-select pleg fuente" name="id_mesa">
+                {% for mesa in mesas %} 
+                <option> {{ mesa.0 }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="form-group">
+                <legend class="mt-2">Estado</legend>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estado" value="disponible" checked="">
+                    <label class="form-check-label" for="optionsRadios1">
+                Disponible
+              </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estado" value="ocupado" checked>
+                    <label class="form-check-label" for="optionsRadios1">
+                Ocupado
+              </label>
+                </div>
+                <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="estado" id="optionsRadios3" value="no disponible">
+                    <label class="form-check-label" for="optionsRadios3">
+                No disponible
+              </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary enviar"> Enviar </button>
+            <button type="button" class="btn cancel" onclick="closeModifyForm()">Cancelar</button>
+        </form>
+    </div>
+
+    <div class="form-popup" style="margin-left: 21rem" id="borrar_mesa">
+        <form action="/borrar_mesa" method="POST" class='form-container'>
+            <div class="form-group">
+                <legend>Mesa</legend>
+                <select class="form-select pleg fuente" name="id_mesa">
+                {% for mesa in mesas %} 
+                <option> {{ mesa.0 }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <button type="submit" class="btn btn-primary enviar"> Enviar </button>
+            <button type="button" class="btn cancel" onclick="closeDeleteForm()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+

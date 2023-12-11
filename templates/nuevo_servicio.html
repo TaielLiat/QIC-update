@@ -1,0 +1,34 @@
+{% extends 'layout.html' %} {%block body%}
+<div>
+    <form class="mt-5" action="/crear_servicio/{{mesa.0.0}}" method="POST">
+        <h2 class="mt-5 text-white"><strong>| Nuevo servicio</strong> </h2>
+        <div class="form-group">
+            <legend class="mt-2">Mesa {{mesa.0.0}}</legend>
+        </div>
+        <div class="form-group">
+            <legend class="mt-4">ID del cliente</legend>
+            <div class="col-sm-10 row">
+                <select class="form-select pleg fuente" style=" margin-left: 10px; width: 300px;" name="id_cliente">
+                {% for cliente in clientes %} 
+                <option> {{ cliente.0 }}</option> 
+                {% endfor %}
+            </select>
+            </div>
+            <div class="botones">
+                <a href="/clientes" target="_blank" class="btn btn-primary"> Ver clientes</a>
+                <a href="/clientes" class="btn btn-primary mx-lg-2"> Crear nuevo cliente</a>
+            </div>
+        </div>
+        <!-- <small class="text-muted" style="margin-top: -1rem; position: absolute;"> Formato correcto: 30000.75 : Formato incorrecto: 30.000,75 </small> -->
+        <div class="form-group">
+            <legend class="mt-4">Tamaño del grupo</legend>
+            <div class="col-sm-10 row">
+                <select class="form-select select" id="loop" name="tamano_grupo">
+            </select>
+            </div>
+        </div>
+        <button type="submit" id="crear" class="btn btn-primary mt-4 me-2">Enviar</button>
+        <a href="/mesas" class="btn btn-primary mt-4"> Volver</a>
+    </form>
+</div>
+{% endblock %}

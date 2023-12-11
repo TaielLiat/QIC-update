@@ -1,0 +1,15 @@
+instalar framework
+pip3 install flask flask-mysqldb
+
+ejecutar servidor
+python App.py
+
+ejecutar web:
+:3000/inicio
+(localhost o ip)
+
+login
+lboniardi
+pepe
+
+Participantes: Cleiman, Mazarelli

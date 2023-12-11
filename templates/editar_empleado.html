@@ -1,0 +1,56 @@
+{% extends 'layout.html' %} {%block body%}
+{% if current_user.is_authenticated %} 
+        {% if current_user.is_admin == "Admin" %}
+            <h4 class="mt-5 text-white"><strong>| Editar datos de empleado</strong> </h4>
+            <form action="/modificar_empleado/{{ empleado.0 }}" method="POST">
+                <div class="form-group">
+                    <label class="form-label mt-4">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" value="{{ empleado.1 }}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Apellido</label>
+                    <input type="text" name="apellido" class="form-control" value="{{ empleado.2 }}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Telefono</label>
+                    <input type="tel" name="telefono" class="form-control" value="{{ empleado.3 }}" pattern="[0-9]{10}" maxlength="13" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Email</label>
+                    <input type="email" name="email" class="form-control" value="{{ empleado.4 }}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Dirección</label>
+                    <input type="text" name="direccion" class="form-control" value="{{ empleado.5 }}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">CUIT</label>
+                    <input type="number" name="cuit" class="form-control" value="{{ empleado.6 }}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">CUIL</label>
+                    <input type="number" name="cuil" class="form-control" value="{{ empleado.7 }}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Usuario</label>
+                    <input type="text" name="username" class="form-control" value="{{ empleado.8 }}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Contraseña</label>
+                    <input type="password" name="password" class="form-control" value="{{ empleado.9 }}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4"> Rol </label>
+                    <select class="form-select" aria-label="Default select example" name="is_admin">
+                        <option> Usuario </option>
+                        <option> Admin </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Enviar</button>
+                <a href="/empleados" class="btn btn-primary mt-4">Volver</button>
+            </form>
+        {% else %} 
+        <h2 class="mt-5 text-white"><strong>NO TIENES PERMISOS PARA VER ESTA AREA</strong> </h2>
+        {% endif %}
+{% endif %}
+{% endblock %}

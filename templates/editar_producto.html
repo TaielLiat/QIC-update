@@ -1,0 +1,22 @@
+{% extends 'layout.html' %} {%block body%}
+<h4 class="mt-5 text-white"><strong>| Editar datos de producto</strong> </h4>
+<form action="/modificar_producto/{{ producto.0 }}" method="POST">
+    <div class="form-group">
+        <label class="form-label mt-4">Nombre</label>
+        <input type="text" name="nombre" class="form-control" value="{{ producto.1 }}" required>
+    </div>
+    <div class="form-group">
+        <label class="form-label mt-4">Precio</label>
+        <input type="number" name="precio" class="form-control" value="{{ producto.2 }}" required>
+    </div>
+    <div class="form-group">
+        <label for="disponible" class="form-label mt-4">Disponible</label>
+        <select id="disponible" name="disponible">
+            <option value="si" {% if producto.3 == 'si' %}selected{% endif %}>Sí</option>
+            <option value="no" {% if producto.3 == 'no' %}selected{% endif %}>No</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary mt-4">Enviar</button>
+    <a href="/menu" class="btn btn-primary mt-4">Volver
+</form>
+{% endblock %}
