@@ -5,11 +5,16 @@ ejecutar servidor
 python App.py
 
 ejecutar web:
-:3000/inicio
-(localhost o ip)
+localhost:3000/
+(localhost o ip local del equipo)
 
-login
+login Administrador:
 lboniardi
 pepe
 
-Participantes: Cleiman, Mazarelli
+login Usuario:
+jmartinez
+pepe
+
+
+Participantes: Cleiman, Boniardi, Belerenian
